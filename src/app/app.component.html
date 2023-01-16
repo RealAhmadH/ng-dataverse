@@ -1,0 +1,14 @@
+<div>
+  <button (click)="loginMS($event)">Login with Microsoft</button>
+  <p>
+    <button (click)="getAccounts($event)">Get Accounts</button>
+  </p>
+<p></p>
+    <h1>Accounts</h1>
+    <ul>
+      <li *ngFor="let account of accounts">
+        {{account.name}}
+      </li>
+    </ul> 
+ 
+</div>
