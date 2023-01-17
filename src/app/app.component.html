@@ -1,14 +1,42 @@
-<div>
-  <button (click)="loginMS($event)">Login with Microsoft</button>
-  <p>
-    <button (click)="getAccounts($event)">Get Accounts</button>
-  </p>
-<p></p>
-    <h1>Accounts</h1>
-    <ul>
-      <li *ngFor="let account of accounts">
-        {{account.name}}
-      </li>
-    </ul> 
- 
+
+<div class="container mt-4" *ngIf="!isLogin">
+  <div class="row">
+    <div class="col-md-6"></div>
+      <div class="col-md-6">
+        <div class="row justify-content-end">
+          <div class="col-md-6">
+        <button (click)="loginMS($event)" class="btn btn-primary">Login</button></div>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <div class="container mt-4" *ngIf="isLogin">
+    <div class="row">
+      <div class="col-md-6"></div>
+        <div class="col-md-6">
+          <div class="row justify-content-end">
+            <div class="col-md-6">
+          <button (click)="logout($event)" class="btn btn-danger">Logout</button>
+          <div class="row p-2">
+            Welcome {{user.username}}
+          </div>
+        </div>
+
+        </div>
+      </div>
+      </div>
+    </div>
+  
+<div *ngIf="isLogin" class="container">
+  <p></p>
+  <button   (click)="getAccounts($event)" class="btn btn-primary">Get Accounts</button>
+  <h1 class="mt-1">Accounts</h1>
+  <ul>
+    <li *ngFor="let account of accounts">
+      {{account.name}}
+    </li>
+  </ul>
 </div>
+<p></p>
+
