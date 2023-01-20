@@ -10,11 +10,11 @@ export class AppStorage {
         return localStorage.getItem('accessToken') as string;
     }
 
-    public setKeyValue(key: string, value: string) {
+    public setKeyValue(key: string, value: any) {
         localStorage.setItem(key, value);
     }
 
-    public getKeyValue(key: string): string {
-        return localStorage.getItem(key) as string;
+    public getKeyValue(key: any): any {
+        return localStorage.getItem(key);
     }
 }
