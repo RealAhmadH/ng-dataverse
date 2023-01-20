@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { BrowserCacheLocation, PublicClientApplication } from "@azure/msal-browser";
+import { AuthenticationResult, BrowserCacheLocation, PublicClientApplication } from "@azure/msal-browser";
 
 @Injectable()
 export class Constants {
@@ -8,6 +8,7 @@ export class Constants {
     public readonly AZURE_TENANT_ID = 'c5cd1154-8516-43f6-bdfc-523ebdcc49cc';//The Azure Tenant ID for the app registration
     public readonly DATAVERSE_BASE_URL = 'https://org856041f3.crm4.dynamics.com' //The base URL for the Dataverse instance. Please replace 'org' with your organization name
     public readonly DATAVERSE_API_URL = '/api/data/v9.2' //The API URL for the Dataverse instance  
+    public readonly AZURE_LOGIN_SCOPE = 'user.read'; //The scope for the login request
     private publicMSALClient: PublicClientApplication;
 
     public readonly MSAL_CONFIG  = {
@@ -35,5 +36,6 @@ export class Constants {
     public getPublicMSALClient(): PublicClientApplication {
         return this.publicMSALClient;
     }
+
 
 }
