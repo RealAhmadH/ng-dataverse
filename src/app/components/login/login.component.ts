@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Constants } from 'src/constants';
 import { AppStorage } from 'src/storage';
 import { MicrosoftadService } from '../../services/microsoftad.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { MicrosoftadService } from '../../services/microsoftad.service';
 export class LoginComponent {
    isLogin: boolean = false
    userName :string | undefined = ""
-  constructor( private _constants: Constants, private _storage : AppStorage, private _msad : MicrosoftadService, private _router: Router) { }
+  constructor( private _constants: Constants, private _storage : AppStorage, private _msad : MicrosoftadService, private _router: Router, private _snackBar: MatSnackBar) { }
 
   //Logout with the Microsoft Azure AD
   logout(event : any)
@@ -30,6 +31,13 @@ export class LoginComponent {
     if(this._constants.isConfigValid() == false)
     {
       //TODO: Show a message to the user
+      this._snackBar.open("Tenant Id, application id and Dataverse base URL must be defined in contants.ts file", "Close",{
+        panelClass:['mat-toolbar', 'mat-warn'],
+      })
+      .onAction().subscribe(() => {
+        this._snackBar.dismiss();
+      })
+      ;
       return;
     }
     const response = await this._msad.ssoSignIn();
