@@ -45,8 +45,11 @@ user: AccountInfo | undefined = this.user) : Promise<AuthenticationResult> {
           account: user,
           authority: this._constants.AZURE_AUTHORITY + this._constants.AZURE_TENANT_ID
       });
+      console.log(response);
       return response;
   } catch (error) {
+        console.log(error);
+        console.log('acquireTokenSilent failed, trying acquireTokenPopup');
       const response = await this.publicMSALClient.acquireTokenPopup({
           scopes: [scope],
           authority: this._constants.AZURE_AUTHORITY + this._constants.AZURE_TENANT_ID

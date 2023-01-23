@@ -1,15 +1,25 @@
 
-<div class="container mt-1">
+<!--
+    Create a login form using the bootsrap 5 with fields email and password. Also add a login button as a primary button.
+    Also add a button to login with Microsoft account. 
+    the form should be responsive and should look good on all devices.
+
+    Github copilot please create the above form for me.
+
+-->
+<div class="container mt-5">
     <div class="row">
         <div class="col-md-6">
-            
+            <form>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label fw-bolder">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <div id="emailHelp" class="form-text">Enter the email hint in case of multiple Microsoft logins (Optional).</div>
+                </div>
+            </form>
+            <button class="btn btn-outline-dark mt-1" (click)="loginMS($event)"><img src='../../../assets/ms_logo.png' class="me-1"/>Sign in with Microsot</button>
         </div>
-        <div class="col-md-6 d-flex flex-row-reverse">
-            <button class="btn btn-primary" (click)="loginMS($event)" *ngIf="!isLogin">Login</button>
-            <div *ngIf="isLogin">
-                <div class="d-flex flex-row-reverse"><button class="btn btn-danger" (click)="logout($event)">Logout</button></div>
-                <div class="d-flex mt-2"><p>Welcome  <span class="fw-bolder">{{userName}}</span></p></div>
-            </div>
-        </div>
+        <div class="col-md-6">
+
     </div>
-</div>  
+</div>

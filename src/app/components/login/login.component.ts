@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Constants } from 'src/constants';
 import { AppStorage } from 'src/storage';
 import { MicrosoftadService } from '../../services/microsoftad.service';
+
 
 @Component({
   selector: 'app-login',
@@ -11,7 +13,7 @@ import { MicrosoftadService } from '../../services/microsoftad.service';
 export class LoginComponent {
    isLogin: boolean = false
    userName :string | undefined = ""
-  constructor( private _constants: Constants, private _storage : AppStorage, private _msad : MicrosoftadService) { }
+  constructor( private _constants: Constants, private _storage : AppStorage, private _msad : MicrosoftadService, private _router: Router) { }
 
   //Logout with the Microsoft Azure AD
   logout(event : any)
@@ -36,8 +38,9 @@ export class LoginComponent {
       this.isLogin = true;
       this.userName = this._msad.user?.username
       this._storage.setKeyValue("username", this.userName);
-      this._storage.setKeyValue("accessToken", response.accessToken);
+      this._storage.setKeyValue("idToken", response.accessToken);
       this._storage.setKeyValue("isLogin", true);
+      this._router.navigate(['/accounts']);
     }
     
   }

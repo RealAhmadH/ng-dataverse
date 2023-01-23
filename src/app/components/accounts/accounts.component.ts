@@ -27,42 +27,43 @@ export class AccountsComponent implements  OnInit{
   
   }
 
-  async getAccounts() : Promise<any>
-  {
-    let accessToken = await this._storage.getKeyValue("accessToken")
-    if(accessToken == null || accessToken == '')
+  async fetchAccessToken() : Promise<string>{
+    let idToken = await this._storage.getKeyValue("idToken")
+    let accessToken = await this._storage.getKeyValue("dataversetoken")
+    if((idToken != null || idToken != '') && (accessToken == null || accessToken == '' || accessToken == undefined))
     {
       const tokenResponse = await this._msad.acquireTokenSilent();
       if(tokenResponse)
       {
-        this._storage.setKeyValue("accessToken", tokenResponse.accessToken);
         accessToken = tokenResponse.accessToken;
+        this._storage.setKeyValue("dataversetoken", accessToken);
       }
     }
-    //console.log(tokenResponse);
-    if(accessToken)
-    {
-      this._httpHeaders = this._httpHeaders.append('Authorization', 'Bearer ' + accessToken);
-      await this._http.get( `${this._constants.DATAVERSE_BASE_URL}${this._constants.DATAVERSE_API_URL}/accounts?$select=name`, 
-      {headers: this._httpHeaders
-      
-      }).subscribe(
-        (data : any) => {
-          console.log(data);
-          return data.value;
-        }
-      );
-      return this.accounts;
-    }
+    return accessToken
   }
-  async ngOnInit() : Promise<void> {
+  async getAccounts() : Promise<any>
+  {
+    const accessToken = await this.fetchAccessToken()
+    this._httpHeaders = this._httpHeaders.append('Authorization', 'Bearer ' + accessToken);
+    await this._http.get( `${this._constants.DATAVERSE_BASE_URL}${this._constants.DATAVERSE_API_URL}/accounts?$select=name`, 
+    {headers: this._httpHeaders
+    }).subscribe(
+      (data : any) => {
+        this.accounts =  data.value;
+        console.log(this.accounts);
+      }
+    );
+  }
+
+  
+   ngOnInit() : void {
     if(this.isLogin == false)
     {
       this._router.navigate(['/app']);
     }
     else
     {
-      this.accounts = await this.getAccounts();
+       this.getAccounts()
     }
   }
 

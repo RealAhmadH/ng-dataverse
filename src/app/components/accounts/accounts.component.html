@@ -1,5 +1,16 @@
-{{accounts}}
-<ul class="list-group">
-  <li class="list-group-item" *ngFor="let account of accounts">
-    
-  </li>
+<div class="container" *ngIf="accounts">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Account Id</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let account of accounts">
+                <td>{{account['accountid']}}</td>
+                <td>{{account['name']}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

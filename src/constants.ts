@@ -9,7 +9,6 @@ export class Constants {
     public readonly DATAVERSE_BASE_URL = 'https://org856041f3.crm4.dynamics.com' //The base URL for the Dataverse instance. Please replace 'org' with your organization name
     public readonly DATAVERSE_API_URL = '/api/data/v9.2' //The API URL for the Dataverse instance  
     public readonly AZURE_LOGIN_SCOPE = 'user.read'; //The scope for the login request
-    private publicMSALClient: PublicClientApplication;
 
     public readonly MSAL_CONFIG  = {
         auth: {
@@ -30,12 +29,8 @@ export class Constants {
         // && this.DATAVERSE_BASE_URL !== '';
     }
     constructor() {
-        this.publicMSALClient = new PublicClientApplication(this.MSAL_CONFIG);
     }
 
-    public getPublicMSALClient(): PublicClientApplication {
-        return this.publicMSALClient;
-    }
 
 
 }
