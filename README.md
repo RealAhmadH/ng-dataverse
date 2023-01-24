@@ -3,7 +3,7 @@ Welcome to a repository of code which expalins how:
  1. You can authenticate the user against the Microsoft Azure AD using the MSAL.
  2. Connect to the Microsoft Datavere and fetch the account names from it.
  
- #How to use it
+ # How to use it
  
  1. Clone the code to your local machine.
  2. Open the source code in any code editor like VS Code. On the terminal run the following command
