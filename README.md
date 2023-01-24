@@ -6,7 +6,8 @@ Welcome to a repository of code which expalins how:
  # How to use it
  
  1. Clone the code to your local machine.
- 2. Open the source code in any code editor like VS Code. On the terminal run the following command
+ 2. Open the source code in any code editor like VS Code. On the terminal run the following command:
+ 
       npm install
  3. Locate the file src\constants.ts and provide the values to the following:
   a. AZURE_APP_ID: your Azure application ID
