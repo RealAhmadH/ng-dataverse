@@ -9,11 +9,13 @@ Welcome to a repository of code which expalins how:
  2. Open the source code in any code editor like VS Code. On the terminal run the following command:
  
       npm install
+      
  3. Locate the file src\constants.ts and provide the values to the following:
   a. AZURE_APP_ID: your Azure application ID
   b. AZURE_TENANT_ID: Your Azure tenant ID.
   c. DATAVERSE_BASE_URL: Enter your dataverse or D365 CE app URL.
  4. On the terminal run the following command:
+ 
     ng serve
  
  You can access the app at http://localhost:4200
